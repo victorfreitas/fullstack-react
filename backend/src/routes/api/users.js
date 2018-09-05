@@ -1,5 +1,8 @@
 import { Router } from 'express'
 
+import getUsers from '../../controllers/users/getUsers'
+import registerUser from '../../controllers/users/register'
+
 const router = Router()
 
 /**
@@ -7,8 +10,13 @@ const router = Router()
  * @desc   Tests users route
  * @access Public
  */
-router.get('/test', (req, res) => {
-  res.json({ users: true })
-})
+router.get('/test', getUsers)
+
+/**
+ * @route  GET api/users/register
+ * @desc   Register user
+ * @access Public
+ */
+router.post('/register', registerUser)
 
 export default router
