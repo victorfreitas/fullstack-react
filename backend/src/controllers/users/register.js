@@ -13,10 +13,6 @@ class Register extends Users {
     this.save()
   }
 
-  fail(err, code = 500) {
-    this.res.status(code).json({ error: err.message })
-  }
-
   setNewUser() {
     this.newUser = new this.Model({
       name: this.body.name,

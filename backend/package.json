@@ -4,9 +4,10 @@
   "main": "dist/server.js",
   "license": "MIT",
   "scripts": {
+    "start": "concurrently \"npm run dev\" \"npm run serve:dev\"",
+    "serve:dev": "cross-env NODE_ENV=development nodemon dist/server",
     "dev": "cross-env NODE_ENV=development webpack --watch --progress",
-    "build": "cross-env NODE_ENV=production webpack --progress",
-    "dev:server": "concurrently \"npm run dev\" \"nodemon dist/server\""
+    "build": "cross-env NODE_ENV=production webpack --progress"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

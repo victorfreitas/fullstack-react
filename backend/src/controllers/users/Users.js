@@ -19,6 +19,10 @@ class Users {
     this.debug = debug.bind(debug, 'usersController')
   }
 
+  fail(err, code = 500) {
+    this.res.status(code).json({ error: err.message })
+  }
+
   render() {}
 }
 
