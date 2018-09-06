@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import passport from 'passport'
 
 import getUsers from '../../controllers/users/getUsers'
 import registerUser from '../../controllers/users/register'
@@ -14,17 +15,33 @@ const router = Router()
 router.get('/test', getUsers)
 
 /**
- * @route  GET api/users/register
+ * @route  POST api/users/register
  * @desc   Register user
  * @access Public
  */
 router.post('/register', registerUser)
 
 /**
- * @route  GET api/users/login
+ * @route  POST api/users/login
  * @desc   Login User / Returning JWT Token
  * @access Public
  */
 router.post('/login', login)
+
+/**
+ * @route  GET api/users/current
+ * @desc   Return current user
+ * @access Private
+ */
+router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
+  const { user } = req
+
+  res.json({
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    avatar: user.avatar,
+  })
+})
 
 export default router

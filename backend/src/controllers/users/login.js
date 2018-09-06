@@ -1,4 +1,5 @@
 import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
 
 import Users from './Users'
 
@@ -11,16 +12,34 @@ class Login extends Users {
 
     bcrypt
       .compare(this.body.password, user.password)
-      .then(isMatch => this.passwordCheck(isMatch))
+      .then(isMatch => this.passwordCheck(isMatch, user))
   }
 
-  passwordCheck(isMatch) {
-    if (isMatch) {
-      this.res.json({ success: true })
+  passwordCheck(isMatch, user) {
+    if (!isMatch) {
+      this.fail({ message: 'User not Found' }, 400)
       return
     }
 
-    this.fail({ message: 'User not Found' }, 400)
+    const payload = {
+      id: user.id,
+      name: user.name,
+      avatar: user.avatar,
+    }
+
+    jwt.sign(
+      payload,
+      process.env.SECRET_KEY,
+      { expiresIn: 3600 },
+      (_, token) => this.jwtToken(token)
+    )
+  }
+
+  jwtToken(token) {
+    this.res.json({
+      success: true,
+      token: `Bearer ${token}`,
+    })
   }
 
   render() {
