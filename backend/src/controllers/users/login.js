@@ -6,7 +6,7 @@ import Users from './Users'
 class Login extends Users {
   success(user) {
     if (!user) {
-      this.fail({ message: 'User not found' }, 400)
+      this.fail('User not found', 400)
       return
     }
 
@@ -17,7 +17,7 @@ class Login extends Users {
 
   passwordCheck(isMatch, user) {
     if (!isMatch) {
-      this.fail({ message: 'User not Found' }, 400)
+      this.fail('User not found', 400)
       return
     }
 
@@ -46,7 +46,7 @@ class Login extends Users {
     this.Model
       .findOne({ email: this.body.email })
       .then(user => this.success(user))
-      .catch(err => this.fail(err))
+      .catch(err => this.fail(err.message))
   }
 }
 

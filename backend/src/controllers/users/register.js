@@ -5,7 +5,7 @@ import generateHash from '../../helpers/generateHash'
 class Register extends Users {
   success(user) {
     if (user) {
-      this.fail({ message: 'Email already exists' }, 400)
+      this.fail('Email already exists', 400)
       return
     }
 
@@ -25,7 +25,7 @@ class Register extends Users {
   save() {
     generateHash(this.newUser.password)
       .then(this.saveUser.bind(this))
-      .catch(this.fail.bind(this))
+      .catch(err => this.fail(err.message))
   }
 
   saveUser(hash) {
@@ -33,14 +33,14 @@ class Register extends Users {
     this.newUser
       .save()
       .then(user => this.res.json(user))
-      .catch(this.fail.bind(this))
+      .catch(err => this.fail(err.message))
   }
 
   render() {
     this.Model
       .findOne({ email: this.body.email })
       .then(this.success.bind(this))
-      .catch(this.fail.bind(this))
+      .catch(err => this.fail(err.message))
   }
 }
 

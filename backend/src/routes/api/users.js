@@ -4,6 +4,10 @@ import passport from 'passport'
 import getUsers from '../../controllers/users/getUsers'
 import registerUser from '../../controllers/users/register'
 import login from '../../controllers/users/login'
+import current from '../../controllers/users/current'
+
+import validationRegister from '../../validation/register'
+import validationLogin from '../../validation/login'
 
 const router = Router()
 
@@ -19,29 +23,20 @@ router.get('/test', getUsers)
  * @desc   Register user
  * @access Public
  */
-router.post('/register', registerUser)
+router.post('/register', validationRegister, registerUser)
 
 /**
  * @route  POST api/users/login
  * @desc   Login User / Returning JWT Token
  * @access Public
  */
-router.post('/login', login)
+router.post('/login', validationLogin, login)
 
 /**
  * @route  GET api/users/current
  * @desc   Return current user
  * @access Private
  */
-router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
-  const { user } = req
-
-  res.json({
-    id: user.id,
-    name: user.name,
-    email: user.email,
-    avatar: user.avatar,
-  })
-})
+router.get('/current', passport.authenticate('jwt', { session: false }), current)
 
 export default router
