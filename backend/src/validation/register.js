@@ -43,9 +43,5 @@ export default (req, res, next) => {
     errors.push('Passwords must match')
   }
 
-  if (!errors.length) {
-    return next()
-  }
-
-  return res.status(400).json({ errors })
+  return errors.length ? res.status(400).json({ errors }) : next()
 }

@@ -1,5 +1,4 @@
 import { Router } from 'express'
-import passport from 'passport'
 
 import getUsers from '../../controllers/users/getUsers'
 import registerUser from '../../controllers/users/register'
@@ -8,6 +7,7 @@ import current from '../../controllers/users/current'
 
 import validationRegister from '../../validation/register'
 import validationLogin from '../../validation/login'
+import authenticate from '../../validation/authenticate'
 
 const router = Router()
 
@@ -37,6 +37,6 @@ router.post('/login', validationLogin, login)
  * @desc   Return current user
  * @access Private
  */
-router.get('/current', passport.authenticate('jwt', { session: false }), current)
+router.get('/current', authenticate(), current)
 
 export default router

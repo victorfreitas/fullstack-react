@@ -18,9 +18,5 @@ export default (req, res, next) => {
     errors.push('Password field is required')
   }
 
-  if (!errors.length) {
-    return next()
-  }
-
-  return res.status(400).json({ errors })
+  return errors.length ? res.status(400).json({ errors }) : next()
 }
