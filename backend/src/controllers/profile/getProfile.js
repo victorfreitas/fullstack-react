@@ -1,10 +1,21 @@
 import Profile from './Profile'
 
-class Home extends Profile {
+class GetProfile extends Profile {
+  getQuery() {
+    const { user, params } = this.req
+
+    if (user) {
+      return { user: user.id }
+    }
+
+    const [key, value] = Object.entries(params).shift()
+
+    return { [key]: value }
+  }
+
   findOne() {
-    const { user } = this.req
     return this.Model
-      .findOne({ user: user.id })
+      .findOne(this.getQuery())
       .populate('user', ['name', 'avatar'])
   }
 
@@ -24,4 +35,4 @@ class Home extends Profile {
   }
 }
 
-export default (req, res) => new Home(req, res)
+export default (req, res) => new GetProfile(req, res)
