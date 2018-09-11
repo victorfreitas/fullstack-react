@@ -2,13 +2,11 @@ import Profile from './Profile'
 
 class GetProfile extends Profile {
   getQuery() {
-    const { user, params } = this.req
-
-    if (user) {
-      return { user: user.id }
+    if (this.user) {
+      return { user: this.user.id }
     }
 
-    const [key, value] = Object.entries(params).shift()
+    const [key, value] = Object.entries(this.params).shift()
 
     return { [key]: value }
   }

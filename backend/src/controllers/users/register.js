@@ -24,7 +24,7 @@ class Register extends Users {
 
   save() {
     generateHash(this.newUser.password)
-      .then(this.saveUser.bind(this))
+      .then(hash => this.saveUser(hash))
       .catch(err => this.fail(err.message))
   }
 
@@ -39,7 +39,7 @@ class Register extends Users {
   render() {
     this.Model
       .findOne({ email: this.body.email })
-      .then(this.success.bind(this))
+      .then(user => this.success(user))
       .catch(err => this.fail(err.message))
   }
 }

@@ -10,10 +10,10 @@ class Control {
   }
 
   init() {
-    const { query, body } = this.req
-
-    this.query = query
-    this.body = body
+    this.user = this.req.user
+    this.params = this.req.params
+    this.query = this.req.query
+    this.body = this.req.body
     this.debug = debug.bind(debug, 'controller')
 
     this.setModel()

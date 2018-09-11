@@ -1,6 +1,6 @@
 import deepmerge from 'deepmerge'
 
-export const education = {
+export const defaultEducation = {
   school: '',
   degree: '',
   fieldofstudy: '',
@@ -10,7 +10,7 @@ export const education = {
   description: '',
 }
 
-export const experience = {
+export const defaultExperience = {
   title: '',
   company: '',
   location: '',
@@ -20,7 +20,7 @@ export const experience = {
   description: '',
 }
 
-const defaultFields = {
+export const defaultFields = {
   user: '',
   handle: '',
   company: '',
@@ -32,8 +32,6 @@ const defaultFields = {
   github: {
     username: '',
   },
-  experience: [],
-  education: [],
   social: {
     youtube: '',
     twitter: '',
@@ -44,4 +42,8 @@ const defaultFields = {
   date: Date.now(),
 }
 
-export default fields => deepmerge(defaultFields, fields)
+export const mergeEducation = body => deepmerge(defaultEducation, body)
+
+export const mergeExperience = body => deepmerge(defaultExperience, body)
+
+export default body => deepmerge(defaultFields, body)

@@ -2,13 +2,11 @@ import Users from './Users'
 
 class Current extends Users {
   render() {
-    const { user } = this.req
-
     this.res.json({
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      avatar: user.avatar,
+      id: this.user.id,
+      name: this.user.name,
+      email: this.user.email,
+      avatar: this.user.avatar,
     })
   }
 }

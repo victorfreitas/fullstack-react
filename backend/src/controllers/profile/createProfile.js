@@ -1,24 +1,24 @@
 import Profile from './Profile'
-import mergeFields from './mergeFields'
+import mergeFields from './defaultFields'
 import isEmpty from '../../helpers/isEmpty'
 
 class CreateProfile extends Profile {
   getFields() {
-    const { user, body } = this.req
+    const { skills } = this.body
 
-    if (!isEmpty(body.skills)) {
-      body.skills = body.skills.split(',')
+    if (!isEmpty(skills)) {
+      this.body.skills = skills.split(',')
     }
 
     return mergeFields({
-      user: user.id,
-      ...body,
+      user: this.user.id,
+      ...this.body,
     })
   }
 
   createOrUpdate() {
     return this.Model.findOneAndUpdate(
-      { user: this.req.user.id },
+      { user: this.user.id },
       { $set: this.getFields() },
       { new: true, upsert: true }
     )

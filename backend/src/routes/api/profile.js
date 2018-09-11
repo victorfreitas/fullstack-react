@@ -1,10 +1,14 @@
 import { Router } from 'express'
 
 import authenticate from '../../validation/authenticate'
+import validationProfile from '../../validation/profile'
+import validationProfileExperience from '../../validation/profileExperience'
+import validationProfileEducation from '../../validation/profileEducation'
 import getProfile from '../../controllers/profile/getProfile'
 import getProfiles from '../../controllers/profile/getProfiles'
 import createProfile from '../../controllers/profile/createProfile'
-import validationProfile from '../../validation/profile'
+import addExperience from '../../controllers/profile/addExperience'
+import addEducation from '../../controllers/profile/addEducation'
 
 const router = Router()
 
@@ -20,7 +24,7 @@ router.get('/', authenticate(), getProfile)
  * @desc   Create user profile
  * @access Private
  */
-router.post('/', validationProfile, authenticate(), createProfile)
+router.post('/', authenticate(), validationProfile, createProfile)
 
 /**
  * @route  GET api/profile/handle/:handle
@@ -44,12 +48,17 @@ router.get('/user/:user', getProfile)
 router.get('/all', getProfiles)
 
 /**
- * @route  GET api/profile/test
- * @desc   Tests profile route
- * @access Public
+ * @route  POST api/profile/experience
+ * @desc   Add experience to profile
+ * @access Private
  */
-router.get('/test', (req, res) => {
-  res.json({ test: true })
-})
+router.post('/experience', authenticate(), validationProfileExperience, addExperience)
+
+/**
+ * @route  POST api/profile/education
+ * @desc   Add education to profile
+ * @access Private
+ */
+router.post('/education', authenticate(), validationProfileEducation, addEducation)
 
 export default router
