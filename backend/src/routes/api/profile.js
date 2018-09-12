@@ -11,6 +11,7 @@ import addExperience from '../../controllers/profile/addExperience'
 import deleteExperience from '../../controllers/profile/deleteExperience'
 import addEducation from '../../controllers/profile/addEducation'
 import deleteEducation from '../../controllers/profile/deleteEducation'
+import removeProfile from '../../controllers/profile/removeProfile'
 
 const router = Router()
 
@@ -27,6 +28,13 @@ router.get('/', authenticate(), getProfile)
  * @access Private
  */
 router.post('/', authenticate(), validationProfile, createProfile)
+
+/**
+ * @route  DELETE api/profile
+ * @desc   Delete user and profile
+ * @access Private
+ */
+router.delete('/', authenticate(), removeProfile)
 
 /**
  * @route  GET api/profile/handle/:handle
