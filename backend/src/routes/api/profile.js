@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import authenticate from '../../validation/authenticate'
+import auth from '../../auth'
 import validationProfile from '../../validation/profile'
 import validationProfileExperience from '../../validation/profileExperience'
 import validationProfileEducation from '../../validation/profileEducation'
@@ -20,21 +20,21 @@ const router = Router()
  * @desc   Get current user profile
  * @access Private
  */
-router.get('/', authenticate(), getProfile)
+router.get('/', auth(), getProfile)
 
 /**
  * @route  POST api/profile
  * @desc   Create user profile
  * @access Private
  */
-router.post('/', authenticate(), validationProfile, createProfile)
+router.post('/', auth(), validationProfile, createProfile)
 
 /**
  * @route  DELETE api/profile
  * @desc   Delete user and profile
  * @access Private
  */
-router.delete('/', authenticate(), removeProfile)
+router.delete('/', auth(), removeProfile)
 
 /**
  * @route  GET api/profile/handle/:handle
@@ -62,27 +62,27 @@ router.get('/all', getProfiles)
  * @desc   Add experience to profile
  * @access Private
  */
-router.post('/experience', authenticate(), validationProfileExperience, addExperience)
+router.post('/experience', auth(), validationProfileExperience, addExperience)
 
 /**
  * @route  DELETE api/profile/experience
  * @desc   Delete experience from profile
  * @access Private
  */
-router.delete('/experience/:id', authenticate(), deleteExperience)
+router.delete('/experience/:id', auth(), deleteExperience)
 
 /**
  * @route  POST api/profile/education
  * @desc   Add education to profile
  * @access Private
  */
-router.post('/education', authenticate(), validationProfileEducation, addEducation)
+router.post('/education', auth(), validationProfileEducation, addEducation)
 
 /**
  * @route  DELETE api/profile/education
  * @desc   Delete education from profile
  * @access Private
  */
-router.delete('/education/:id', authenticate(), deleteEducation)
+router.delete('/education/:id', auth(), deleteEducation)
 
 export default router

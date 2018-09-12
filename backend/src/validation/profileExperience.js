@@ -1,4 +1,5 @@
 import isEmpty from '../helpers/isEmpty'
+import errorOrNext from './errorOrNext'
 
 export default (req, res, next) => {
   const errors = []
@@ -16,5 +17,5 @@ export default (req, res, next) => {
     errors.push('From date field is required')
   }
 
-  return errors.length ? res.status(400).json({ errors }) : next()
+  return errorOrNext(errors, res, next)
 }

@@ -6,7 +6,7 @@ import express from 'express'
 import debug from './debug'
 import configServer from './config/server'
 import routes from './routes'
-import errorRoute from './routes/error'
+import routesError from './routes/error'
 
 const { PORT } = process.env
 const app = express()
@@ -14,7 +14,7 @@ const app = express()
 configServer(app)
 
 app.use('/', routes)
-app.use(errorRoute)
+app.use(routesError)
 
 app.listen(PORT, () => {
   debug('server', `Server running on http://localhost:${PORT}`)

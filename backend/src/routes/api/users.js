@@ -1,12 +1,11 @@
 import { Router } from 'express'
 
+import auth from '../../auth'
 import registerUser from '../../controllers/users/register'
 import login from '../../controllers/users/login'
 import current from '../../controllers/users/current'
-
 import validationRegister from '../../validation/register'
 import validationLogin from '../../validation/login'
-import authenticate from '../../validation/authenticate'
 
 const router = Router()
 
@@ -29,6 +28,6 @@ router.post('/login', validationLogin, login)
  * @desc   Return current user
  * @access Private
  */
-router.get('/current', authenticate(), current)
+router.get('/current', auth(), current)
 
 export default router

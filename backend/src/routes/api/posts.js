@@ -1,14 +1,16 @@
 import { Router } from 'express'
 
+import auth from '../../auth'
+import validationPost from '../../validation/post'
+import createPost from '../../controllers/posts/createPost'
+
 const router = Router()
 
 /**
- * @route  GET api/posts/test
- * @desc   Tests posts route
- * @access Public
+ * @route  POST api/posts
+ * @desc   Create post
+ * @access Private
  */
-router.get('/test', (req, res) => {
-  res.json({ posts: true })
-})
+router.post('/', auth(), validationPost, createPost)
 
 export default router

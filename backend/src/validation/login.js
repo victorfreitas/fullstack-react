@@ -1,6 +1,7 @@
 import Validator from 'validator'
 
 import isEmpty from '../helpers/isEmpty'
+import errorOrNext from './errorOrNext'
 
 export default (req, res, next) => {
   const { email = '', password = '' } = req.body
@@ -18,5 +19,5 @@ export default (req, res, next) => {
     errors.push('Password field is required')
   }
 
-  return errors.length ? res.status(400).json({ errors }) : next()
+  return errorOrNext(errors, res, next)
 }

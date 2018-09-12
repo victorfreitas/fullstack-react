@@ -1,6 +1,7 @@
 import Validator from 'validator'
 
 import isEmpty from '../helpers/isEmpty'
+import errorOrNext from './errorOrNext'
 
 export default (req, res, next) => {
   const { body } = req
@@ -27,5 +28,5 @@ export default (req, res, next) => {
     errors.push('Website field is invalid')
   }
 
-  return errors.length ? res.status(400).json({ errors }) : next()
+  return errorOrNext(errors, res, next)
 }
