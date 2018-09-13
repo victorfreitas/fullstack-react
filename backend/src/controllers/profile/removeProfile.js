@@ -3,18 +3,18 @@ import User from '../../models/User'
 
 class RemoveProfile extends Profile {
   remove() {
-    return this.Model.findOneAndRemove({ user: this.user.id })
+    return this.Model.findOneAndDelete({ user: this.user.id })
   }
 
-  onRemovedProfile() {
-    User.findOneAndRemove({ _id: this.user.id })
+  sucess() {
+    User.findOneAndDelete({ _id: this.user.id })
       .then(() => this.res.json({ success: true }))
       .catch(err => this.fail(err.message))
   }
 
   render() {
     this.remove()
-      .then(() => this.onRemovedProfile())
+      .then(() => this.sucess())
       .catch(err => this.fail(err.message))
   }
 }

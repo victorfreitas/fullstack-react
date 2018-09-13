@@ -16,22 +16,12 @@ class CreateProfile extends Profile {
     })
   }
 
-  createOrUpdate() {
+  process() {
     return this.Model.findOneAndUpdate(
       { user: this.user.id },
       { $set: this.getFields() },
       { new: true, upsert: true }
     )
-  }
-
-  success(profile) {
-    this.res.json(profile)
-  }
-
-  render() {
-    this.createOrUpdate()
-      .then(profile => this.success(profile))
-      .catch(err => this.fail(err.message))
   }
 }
 

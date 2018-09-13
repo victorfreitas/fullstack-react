@@ -1,7 +1,7 @@
 import Posts from './Posts'
 
 class CreatePost extends Posts {
-  save() {
+  process() {
     const post = new this.Model({
       text: this.body.text,
       name: this.body.name,
@@ -10,16 +10,6 @@ class CreatePost extends Posts {
     })
 
     return post.save()
-  }
-
-  success(post) {
-    this.res.json(post)
-  }
-
-  render() {
-    this.save()
-      .then(post => this.success(post))
-      .catch(err => this.fail(err.message))
   }
 }
 

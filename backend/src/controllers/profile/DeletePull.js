@@ -1,7 +1,7 @@
 import Profile from './Profile'
 
 class DeletePull extends Profile {
-  delete() {
+  process() {
     return this.Model.findOneAndUpdate(
       { user: this.user.id },
       {
@@ -11,16 +11,6 @@ class DeletePull extends Profile {
       },
       { new: true, upsert: true, multi: false }
     )
-  }
-
-  success(profile) {
-    this.res.json(profile)
-  }
-
-  render() {
-    this.delete()
-      .then(profile => this.success(profile))
-      .catch(err => this.fail(err.message))
   }
 }
 

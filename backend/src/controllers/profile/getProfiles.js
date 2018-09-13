@@ -1,21 +1,15 @@
 import Profile from './Profile'
 
 class GetProfiles extends Profile {
-  success(profiles) {
-    if (!profiles) {
-      this.fail('There are no profiles', 404)
-      return
-    }
-
-    this.res.json(profiles)
+  // eslint-disable-next-line class-methods-use-this
+  get notFoundMessage() {
+    return 'There are no profiles'
   }
 
-  render() {
-    this.Model
+  process() {
+    return this.Model
       .find()
       .populate('user', ['name', 'avatar'])
-      .then(profiles => this.success(profiles))
-      .catch(err => this.fail(err.message))
   }
 }
 
