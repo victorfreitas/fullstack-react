@@ -8,6 +8,8 @@ import getPostById from '../../controllers/posts/getPostById'
 import removePost from '../../controllers/posts/removePost'
 import likePost from '../../controllers/posts/likePost'
 import unlikePost from '../../controllers/posts/unlikePost'
+import addComment from '../../controllers/posts/addComment'
+import deleteComment from '../../controllers/posts/deleteComment'
 
 const router = Router()
 
@@ -51,6 +53,20 @@ router.post('/:id/like', auth(), likePost)
  * @desc   Unlike post
  * @access Private
  */
-router.post('/:id/unlike', auth(), unlikePost)
+router.delete('/:id/like', auth(), unlikePost)
+
+/**
+ * @route  POST api/posts/:id/comment
+ * @desc   Add comment to post
+ * @access Private
+ */
+router.post('/:id/comment', auth(), validationPost, addComment)
+
+/**
+ * @route  DELETE api/posts/:id/comment
+ * @desc   Add comment to post
+ * @access Private
+ */
+router.delete('/:id/comment/:commentId', auth(), deleteComment)
 
 export default router
