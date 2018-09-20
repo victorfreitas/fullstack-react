@@ -1,0 +1,39 @@
+img {
+  width: 100%;
+}
+
+.landing {
+  background: url('../../assets/images/showcase.jpg') no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  margin-bottom: -50px;
+  margin-top: -24px;
+  position: relative;
+}
+
+.landing-inner {
+  padding-top: 80px;
+}
+
+.dark-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.card-form {
+  opacity: 0.9;
+}
+
+.latest-profiles-img {
+  height: 40px;
+  width: 40px;
+}
+
+.form-control::placeholder {
+  color: #bbb !important;
+}
