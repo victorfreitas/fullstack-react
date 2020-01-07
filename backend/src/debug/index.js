@@ -1,3 +1,3 @@
 import debug from 'debug'
 
-export default (namespace, message) => debug(`letzup:${namespace}`)(message)
+export default (namespace, message) => debug(`vikoder:${namespace}`)(message)

@@ -1,5 +1,5 @@
 import './config/dotenv'
-import './config/db'
+import './config/mongoose'
 
 import express from 'express'
 

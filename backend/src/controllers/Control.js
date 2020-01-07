@@ -27,7 +27,7 @@ class Control {
     this.res.status(code).json({ errors: [error] })
   }
 
-  render() {}
+  render() {} // eslint-disable-line class-methods-use-this
 }
 
 export default Control
