@@ -17,7 +17,7 @@ const router = Router()
  * @desc   Create user profile.
  * @access Private
  */
-router.post('/', auth(), validationProfile, createProfile)
+router.post('/', auth(), ...validationProfile(), createProfile)
 
 /**
  * @route  GET api/profile/all

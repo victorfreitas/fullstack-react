@@ -12,7 +12,7 @@ const router = Router()
  * @desc   Add experience to profile
  * @access Private
  */
-router.post('/', auth(), validationProfileExperience, addExperience)
+router.post('/', auth(), ...validationProfileExperience(), addExperience)
 
 /**
  * @route  DELETE api/profile/experience

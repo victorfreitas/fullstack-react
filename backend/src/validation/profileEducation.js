@@ -1,30 +1,13 @@
-import isEmpty from 'src/helpers/isEmpty'
-import errorOrNext from './errorOrNext'
+import { body } from 'express-validator'
 
-export default (req, res, next) => {
-  const errors = []
-  const {
-    school = '',
-    degree = '',
-    fieldofstudy = '',
-    from = '',
-  } = req.body
+import validationResult from './validationResult'
 
-  if (isEmpty(school)) {
-    errors.push('School field is required')
-  }
-
-  if (isEmpty(degree)) {
-    errors.push('Degree field is required')
-  }
-
-  if (isEmpty(fieldofstudy)) {
-    errors.push('Field of study is required')
-  }
-
-  if (isEmpty(from)) {
-    errors.push('From date field is required')
-  }
-
-  return errorOrNext(errors, res, next)
-}
+export default () => [
+  [
+    body('school').isEmpty(),
+    body('degree').isEmpty(),
+    body('fieldofstudy').isEmpty(),
+    body('from').isEmpty(),
+  ],
+  validationResult,
+]

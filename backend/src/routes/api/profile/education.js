@@ -12,7 +12,7 @@ const router = Router()
  * @desc   Add education to profile
  * @access Private
  */
-router.post('/', auth(), validationProfileEducation, addEducation)
+router.post('/', auth(), ...validationProfileEducation(), addEducation)
 
 /**
  * @route  DELETE api/profile/education

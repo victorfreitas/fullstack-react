@@ -1,23 +1,11 @@
-import Validator from 'validator'
+import { body } from 'express-validator'
 
-import isEmpty from 'src/helpers/isEmpty'
-import errorOrNext from './errorOrNext'
+import validationResult from './validationResult'
 
-export default (req, res, next) => {
-  const { email = '', password = '' } = req.body
-  const errors = []
-
-  if (isEmpty(email)) {
-    errors.push('Email field is required')
-  }
-
-  if (!Validator.isEmail(email)) {
-    errors.push('Email field is invalid')
-  }
-
-  if (isEmpty(password)) {
-    errors.push('Password field is required')
-  }
-
-  return errorOrNext(errors, res, next)
-}
+export default () => [
+  [
+    body('email').isEmail(),
+    body('password').isLength({ min: 6 }),
+  ],
+  validationResult,
+]

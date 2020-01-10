@@ -14,14 +14,14 @@ const router = Router()
  * @desc   Register user
  * @access Public
  */
-router.post('/register', validationRegister, registerUser)
+router.post('/register', ...validationRegister(), registerUser)
 
 /**
  * @route  POST api/users/login
  * @desc   Login User / Returning JWT Token
  * @access Public
  */
-router.post('/login', validationLogin, login)
+router.post('/login', ...validationLogin(), login)
 
 /**
  * @route  GET api/users/current

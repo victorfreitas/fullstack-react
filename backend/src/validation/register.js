@@ -1,48 +1,12 @@
-import Validator from 'validator'
+import { body } from 'express-validator'
 
-import isEmpty from 'src/helpers/isEmpty'
-import errorOrNext from './errorOrNext'
+import validationResult from './validationResult'
 
-export default (req, res, next) => {
-  const errors = []
-  const {
-    name = '',
-    email = '',
-    password = '',
-    password2 = '',
-  } = req.body
-
-  if (isEmpty(name)) {
-    errors.push('Name field is required')
-  }
-
-  if (!Validator.isLength(name, { min: 2, max: 30 })) {
-    errors.push('Name must be between 2 and 30 characters')
-  }
-
-  if (isEmpty(email)) {
-    errors.push('Email field is required')
-  }
-
-  if (!Validator.isEmail(email)) {
-    errors.push('Email field is invalid')
-  }
-
-  if (isEmpty(password)) {
-    errors.push('Password field is required')
-  }
-
-  if (!Validator.isLength(password, { min: 6, max: 30 })) {
-    errors.push('Password must be at least 6 characters')
-  }
-
-  if (isEmpty(password2)) {
-    errors.push('Confirm password field is required')
-  }
-
-  if (!Validator.equals(password, password2)) {
-    errors.push('Passwords must match')
-  }
-
-  return errorOrNext(errors, res, next)
-}
+export default () => [
+  [
+    body('name').isLength({ min: 2, max: 30 }),
+    body('email').isEmail(),
+    body('password').isLength({ min: 6 }).equals('password2'),
+  ],
+  validationResult,
+]

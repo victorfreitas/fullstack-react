@@ -25,7 +25,7 @@ router.get('/', getPosts)
  * @desc   Create post
  * @access Private
  */
-router.post('/', auth(), validationPost, createPost)
+router.post('/', auth(), ...validationPost(), createPost)
 
 /**
  * @route  GET api/posts/:id
