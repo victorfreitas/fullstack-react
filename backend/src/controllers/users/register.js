@@ -1,6 +1,6 @@
+import { gravatarUrl } from 'src/helpers/gravatar'
+import generateHash from 'src/helpers/generateHash'
 import Users from './Users'
-import { gravatarUrl } from '../../helpers/gravatar'
-import generateHash from '../../helpers/generateHash'
 
 class Register extends Users {
   success(user) {
@@ -39,7 +39,7 @@ class Register extends Users {
   render() {
     this.Model
       .findOne({ email: this.body.email })
-      .then(user => this.success(user))
+      .then(this.success)
       .catch(err => this.fail(err.message))
   }
 }

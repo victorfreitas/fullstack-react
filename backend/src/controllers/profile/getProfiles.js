@@ -9,7 +9,7 @@ class GetProfiles extends Profile {
   process() {
     return this.Model
       .find()
-      .populate('user', ['name', 'avatar'])
+      .populate('user', ['name', 'email', 'avatar'])
   }
 }
 

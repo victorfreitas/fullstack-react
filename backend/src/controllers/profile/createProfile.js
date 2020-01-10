@@ -1,6 +1,6 @@
+import isEmpty from 'src/helpers/isEmpty'
 import Profile from './Profile'
 import mergeFields from './defaultFields'
-import isEmpty from '../../helpers/isEmpty'
 
 class CreateProfile extends Profile {
   getFields() {

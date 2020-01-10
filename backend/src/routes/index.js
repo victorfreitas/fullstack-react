@@ -6,7 +6,7 @@ const router = Router()
 
 /**
  * @route  GET /
- * @desc   Home page
+ * @desc   Home page.
  * @access Public
  */
 router.get('/', (req, res) => {

@@ -1,19 +1,9 @@
-import Control from '../Control'
-import Model from '../../models/Profile'
-import isEmpty from '../../helpers/isEmpty'
+import Model from 'src/models/Profile'
+import Controller from '../Controller'
 
-class Profile extends Control {
+class Profile extends Controller {
   setModel() {
     this.Model = Model
-  }
-
-  success(data) {
-    if (isEmpty(data)) {
-      this.fail(this.notFoundMessage, 404)
-      return
-    }
-
-    this.res.json(data)
   }
 
   render() {

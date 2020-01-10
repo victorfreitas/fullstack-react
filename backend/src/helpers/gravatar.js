@@ -7,7 +7,7 @@ const defaultOptions = {
 }
 
 export const gravatarUrl = (email, options = {}) => (
-  gravatar.url(email, Object.assign(defaultOptions, options))
+  gravatar.url(email, { ...defaultOptions, ...options })
 )
 
 export default gravatar

@@ -1,15 +1,15 @@
 import { Router } from 'express'
 
-import auth from '../../auth'
-import validationPost from '../../validation/post'
-import createPost from '../../controllers/posts/createPost'
-import getPosts from '../../controllers/posts/getPosts'
-import getPostById from '../../controllers/posts/getPostById'
-import removePost from '../../controllers/posts/removePost'
-import likePost from '../../controllers/posts/likePost'
-import unlikePost from '../../controllers/posts/unlikePost'
-import addComment from '../../controllers/posts/addComment'
-import deleteComment from '../../controllers/posts/deleteComment'
+import auth from 'src/auth'
+import validationPost from 'src/validation/post'
+import createPost from 'src/controllers/posts/createPost'
+import getPosts from 'src/controllers/posts/getPosts'
+import getPostById from 'src/controllers/posts/getPostById'
+import removePost from 'src/controllers/posts/removePost'
+import likePost from 'src/controllers/posts/likePost'
+import unlikePost from 'src/controllers/posts/unlikePost'
+import addComment from 'src/controllers/posts/addComment'
+import deleteComment from 'src/controllers/posts/deleteComment'
 
 const router = Router()
 

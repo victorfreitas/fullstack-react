@@ -1,11 +1,11 @@
 import { Router } from 'express'
 
-import auth from '../../auth'
-import registerUser from '../../controllers/users/register'
-import login from '../../controllers/users/login'
-import current from '../../controllers/users/current'
-import validationRegister from '../../validation/register'
-import validationLogin from '../../validation/login'
+import auth from 'src/auth'
+import registerUser from 'src/controllers/users/register'
+import login from 'src/controllers/users/login'
+import current from 'src/controllers/users/current'
+import validationRegister from 'src/validation/register'
+import validationLogin from 'src/validation/login'
 
 const router = Router()
 

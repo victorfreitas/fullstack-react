@@ -28,5 +28,8 @@ module.exports = {
   externals: [nodeExternals()],
   resolve: {
     extensions: ['.js', '.json'],
+    alias: {
+      src: path.join(__dirname, 'src'),
+    },
   },
 }

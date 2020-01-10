@@ -1,6 +1,6 @@
 import Validator from 'validator'
 
-import isEmpty from '../helpers/isEmpty'
+import isEmpty from 'src/helpers/isEmpty'
 import errorOrNext from './errorOrNext'
 
 export default (req, res, next) => {

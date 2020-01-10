@@ -1,5 +1,5 @@
+import isEmpty from 'src/helpers/isEmpty'
 import Posts from './Posts'
-import isEmpty from '../../helpers/isEmpty'
 
 class LikePost extends Posts {
   process() {

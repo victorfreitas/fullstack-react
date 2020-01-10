@@ -1,7 +1,7 @@
-import Control from '../Control'
-import User from '../../models/User'
+import User from 'src/models/User'
+import Controller from '../Controller'
 
-class Users extends Control {
+class Users extends Controller {
   setModel() {
     this.Model = User
   }

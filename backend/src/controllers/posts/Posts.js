@@ -1,18 +1,14 @@
-import Control from '../Control'
+import Controller from '../Controller'
 import Post from '../../models/Post'
 
-class Posts extends Control {
+class Posts extends Controller {
   setModel() {
     this.Model = Post
   }
 
-  success(data) {
-    this.res.json(data)
-  }
-
   render() {
     this.process()
-      .then(data => this.success(data))
+      .then(this.success)
       .catch(err => this.fail(err.message))
   }
 }
